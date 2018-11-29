@@ -4,3 +4,20 @@ This repository is to introduce myself and others to Python's magic methods. dem
 
 ### Tabs or Spaces?
 The python in this repository was written with spaces, not tabs. If you intend to clone down this repository, use spaces or risk bugs.
+
+Note: I automatically configured tabs to be written as 4 spaces. The way to do this is different on every code editor.
+
+### Set-Up
+To run the demo, use the following terminal command:
+```
+python*version* -i demo.py
+```
+if that doesn't work, try:
+```
+py -i demo.py
+```
+If you don't know your version of python check it with
+```
+python --version
+```
+Typically macs come with python installed by default.
