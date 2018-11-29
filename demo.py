@@ -56,6 +56,24 @@ class Spring:
         # for not equals, we return the opposite of whatever equals would return
         return not self == other
 
+    # we can use __add__, __sub__ and others to define what happens when we use + - etc with Springs
+
+    def __add__(self, other):
+        # we need to be careful about what we are adding. We can check the type of our other to determine how we handle +
+        if(type(other) == Spring):
+            # on adding two springs, we return a third spring. I spent no time checking the physics behind 'adding' springs, so if you want to rewrite this with some physical process in mind, go ahead.
+            newName = self.name + ' + ' + other.name
+            newDisplacement = (self.displacement + other.displacement) / 2
+            newVelocity = self.velocity + other.velocity
+            return Spring(newName, newDisplacement, newVelocity)
+        elif(type(other) == int or type(other) == float):
+            # when adding a number, we add that number to our spring and return the new spring
+            return Spring(self.name, self.displacement + other, self.velocity + other)
+        elif(type(other) == str):
+            # on adding a string, we can add the string to the spring's name
+            return Spring(self.name + other, self.displacement, self.velocity)
+        else:
+            return self
     pass
 
 s1 = Spring('spring one')
