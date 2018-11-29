@@ -74,6 +74,39 @@ class Spring:
             return Spring(self.name + other, self.displacement, self.velocity)
         else:
             return self
+    
+    def __sub__(self, other):
+        if(type(other) == Spring):
+            newName = self.name + ' - ' + other.name
+            newDisplacement = (self.displacement + other.displacement) / 2
+            newVelocity = self.velocity - other.velocity
+            return Spring(newName, newDisplacement, newVelocity)
+        elif(type(other) == int or type(other) == float):
+            # when subtracting a number, we subtract that number to our spring and return the new spring
+            return Spring(self.name, self.displacement - other, self.velocity - other)
+        else:
+            return self
+    
+    def __mul__(self, other):
+        # we will only handle multiplying springs by numbers
+        if(type(other) == int or type(other) == float):
+            return Spring(self.name, self.displacement * other, self.velocity * other)
+        else:
+            return self
+
+    def __div__(self, other):
+        if(type(other) == int or type(other) == float):
+            return Spring(self.name, self.displacement / other, self.velocity / other)
+        else:
+            return self
+    
+    # so far we have made reasonable choices for what our mathematical operators do to our springs. We don't have to. Let's have the % operator only accept strings, and return a spring with a new name.
+
+    def __mod__(self, other):
+        if(type(other) == str):
+            return Spring(other, self.displacement, self.velocity)
+        else:
+            return self
     pass
 
 s1 = Spring('spring one')
