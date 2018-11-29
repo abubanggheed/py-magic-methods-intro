@@ -23,12 +23,42 @@ class Spring:
     
     # we will now set up __call__. __call__ allows us to add a behavior for when our Spring is called as a function. We will have call reassign the spring's attributes.
     
-    def __call__(self, newDis=0, newVel=0):
-        self.displacement = newDis
-        self.velocity = newVel
+    def __call__(self, newDis=None, newVel=None):
+        if(newDis != None):
+            self.displacement = newDis
+        if(newVel != None):
+            self.velocity = newVel
         return self
         # here calling the spring as a function will reset its value. Since we already have a __repr__ set up, when we return self we actually return the string returned by __repr__
+
+    # the __neg__ and __pos__ methods occur when you would use a + or a - sign before asking for a __repr__ we use - a lot for numbers to make negative numbers.
+
+    def __pos__(self):
+        # we will use __pos__ to set all number attributes to non-negative values.
+        self.displacement = abs(self.displacement)
+        self.velocity = abs(self.velocity)
+        return self
+
+    def __neg__(self):
+        # we will use __neg__ to set all number attributes equal to their opposite values.
+        self.displacement = -self.displacement
+        self.velocity = -self.velocity
+        return self
+
+    # normally we wouldn't be able to compare two Springs since they are no more than references to an object. However, with __eq__ and __ne__ we can allow for logic such as springOne == springTwo to sometimes return True.
+
+    def __eq__(self, other):
+        # we only want to compare two springs. We will return true if both strings have the same displacement and velocity
+        if(type(other) == Spring):
+            if(self.displacement == other.displacement and self.velocity == other.velocity):
+                return True
+        return False
+
+    def __ne__(self, other):
+        # for not equals, we return the opposite of whatever equals would return
+        return not self == other
 
     pass
 
 s1 = Spring('spring one')
+s2 = Spring('spring two')
