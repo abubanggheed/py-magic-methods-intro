@@ -139,11 +139,9 @@ class Spring:
         else:
             return self
     
-    def __mod__(self, other):
+    def __rmod__(self, other):
         if(type(other) == str):
             return self % other
 
     pass
 
-s1 = Spring('spring one')
-s2 = Spring('spring two')
