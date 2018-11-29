@@ -107,6 +107,42 @@ class Spring:
             return Spring(other, self.displacement, self.velocity)
         else:
             return self
+    
+    # for each of those math operations there is a reflected operations. This is because a + b is fundamentally different from b + a. The same goes for -, *, and /. 3 of those operations are ones we normally think of as being communitive, that is normally, a + b == b + a. That however is not true in general e.g. strings, it is a field property and does not automatically hold for our springs.
+    # for our springs we will have the reflected operations do similar things as the normal ones.
+
+    def __radd__(self, other):
+        # we will not check if other is another spring since that is handled in the __add__ method.
+        if(type(other) == int or type(other) == float):
+            return self + other
+        elif(type(other) == str):
+            # when adding a string in reverse, we will add in the opposite order.
+            return Spring(other + self.name, self.displacement, self.velocity)
+        else:
+            return self
+    
+    def __rsub__(self, other):
+        if(type(other) == int or type(other) == float):
+            return self - other
+        else:
+            return self        
+
+    def __rmul__(self, other):
+        if(type(other) == int or type(other) == float):
+            return self * other
+        else:
+            return self
+
+    def __rdiv__(self, other):
+        if(type(other) == int or type(other) == float):
+            return self / other
+        else:
+            return self
+    
+    def __mod__(self, other):
+        if(type(other) == str):
+            return self % other
+
     pass
 
 s1 = Spring('spring one')
