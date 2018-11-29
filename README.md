@@ -20,4 +20,10 @@ If you don't know your version of python check it with
 ```
 python --version
 ```
-Typically macs come with python installed by default.
+Typically macs come with python installed by default. The -i is to keep python running after finishing compiling the code. This allows you to use the terminal to play with all the magic methods implemented in the custom classes.
+
+To exit, use `quit()`, or `control + z`.
+If `control + z` doesn't work, try `control + c`.
+
+### References
+I learned about magic methods here: https://rszalski.github.io/magicmethods/
