@@ -34,16 +34,14 @@ class Spring:
     # the __neg__ and __pos__ methods occur when you would use a + or a - sign before asking for a __repr__ we use - a lot for numbers to make negative numbers.
 
     def __pos__(self):
-        # we will use __pos__ to set all number attributes to non-negative values.
-        self.displacement = abs(self.displacement)
-        self.velocity = abs(self.velocity)
-        return self
+        # we will use __pos__ to create a new Spring all number attributes set to non-negative values.
+        newSpring = Spring(self.name, abs(self.displacement), abs(self.velocity))
+        return newSpring
 
     def __neg__(self):
-        # we will use __neg__ to set all number attributes equal to their opposite values.
-        self.displacement = -self.displacement
-        self.velocity = -self.velocity
-        return self
+        # we will use __neg__ to create a new Spring all number attributes equal to this spring's opposite values.
+        newSpring = Spring(self.name, -self.displacement, -self.velocity)
+        return newSpring
 
     # normally we wouldn't be able to compare two Springs since they are no more than references to an object. However, with __eq__ and __ne__ we can allow for logic such as springOne == springTwo to sometimes return True.
 
